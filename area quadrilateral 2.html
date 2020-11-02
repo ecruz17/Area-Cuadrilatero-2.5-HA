@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perimetro Calculadora</title>
+
+</head>
+<body>
+    <h1>Ingresa las medidas de Google Earth</h1>
+
+    <img src="https://planetcalc.com/users/2/1475467357.png" style="width: 200px;">
+
+    <form name="formcalc"> 
+
+    Lado a: <input type="text" name="a"><br>
+    Lado b: <input type="text" name="b"><br>
+    Lado c: <input type="text" name="c"><br>
+    Lado d: <input type="text" name="d"><br>
+    Diagonal e: <input type="text" name="e"><br>
+    Diagonal f: <input type="text" name="f"><br>
+    Resultado: <input type="text" name="txtres"><br>
+
+    <input type="button" value="Calcular" onClick="calcValues()">
+    <input type="button" value="Limpiar" onClick="clean()">
+
+    <p id="sidio"> </p>
+    <p id="nodio"> </p>
+
+    </form>
+    
+    <script type="text/javascript">
+
+function calcValues() {
+
+var e = Number(document.formcalc.e.value);
+var f = Number(document.formcalc.f.value);
+var a = Number(document.formcalc.a.value);
+var b = Number(document.formcalc.b.value);
+var c = Number(document.formcalc.c.value);
+var d = Number(document.formcalc.d.value);
+
+
+res = Math.sqrt(4*e*e*f*f-Math.pow(b*b+d*d-a*a-c*c,2))/4;
+
+res = Math.round((res + Number.EPSILON) * 100) / 100
+
+document.formcalc.txtres.value = res;
+
+if(res < 25000)
+    {
+
+        
+        document.getElementById("nodio").innerHTML = "El resultado es menor, los nuevos valores son: ";
+    }
+    else 
+    {
+
+        document.getElementById("sidio").innerHTML = "Si daaa AUAUAUA!!!";
+
+    };
+
+};
+ 
+function clean() {
+
+document.formcalc.a.value = "";
+document.formcalc.b.value = "";
+document.formcalc.c.value = "";
+document.formcalc.d.value = "";
+document.formcalc.e.value = "";
+document.formcalc.f.value = "";
+document.formcalc.txtres.value = "";
+document.getElementById("sidio").innerHTML = "";
+document.getElementById("nodio").innerHTML = "";
+
+};
+
+
+
+    </script>
+</body>
+</html>
