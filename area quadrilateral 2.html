@@ -24,8 +24,10 @@
     <input type="button" value="Calcular" onClick="calcValues()">
     <input type="button" value="Limpiar" onClick="clean()">
 
-    <p id="sidio"> </p>
-    <p id="nodio"> </p>
+    <p id="sidio"></p>
+    <p id="nodio"></p>
+    <p id="res2"></p>
+    <p id="res3"></p>
 
     </form>
     
@@ -40,10 +42,9 @@ var b = Number(document.formcalc.b.value);
 var c = Number(document.formcalc.c.value);
 var d = Number(document.formcalc.d.value);
 
-
 res = Math.sqrt(4*e*e*f*f-Math.pow(b*b+d*d-a*a-c*c,2))/4;
+res = Math.round((res + Number.EPSILON) * 100) / 100;
 
-res = Math.round((res + Number.EPSILON) * 100) / 100
 
 document.formcalc.txtres.value = res;
 
@@ -56,16 +57,72 @@ if(res >=25000 && res <=26000)
     else 
     {
 
-        for() {
-        const arr = [a,b,c,d]
+//Cuando el resultado es menor
+        if(res <25000) {
+
+        /*const arr = [a,b,c,d]
         const min = Math.min(...arr)
-        console.log(min)
+        var minim = min;
+        console.log(min)*/
+        
+        for(var i = 0; i < 100;i++) { 
 
-        document.getElementById("nodio").innerHTML = "El resultado es menor, los nuevos valores son: " ;
+            a = a + 1;
+            res = Math.sqrt(4*e*e*f*f-Math.pow(b*b+d*d-a*a-c*c,2))/4;
+            res = Math.round((res + Number.EPSILON) * 100) / 100;
+
+            if (res <25000) { 
+                b = b + 1    
+                
+            } else if (res <25000) {
+                c = c + 1 
+ 
+            } else if (res <25000) {
+                d = d + 1        
+ 
+            }
+            
+            else if (res >=25000 && res <=26000) { break;}
+
         }
-    };
 
-};
+        var res2 = toString(res);
+
+        document.getElementById("nodio").innerHTML = "El resultado es menor, los nuevos valores son: " + `${a} | ${b} | ${c} | ${d}`;
+        
+        document.getElementById("res2").innerHTML = "Igual a: " + res2;
+
+        } else if(res >26000 ) {
+//Cuando el resultado es mayor
+            
+
+            /*const arr = [a,b,c,d]
+            const max = Math.max(...arr)
+            var maxim = max;
+            console.log(max)*/
+
+            
+
+            for(var i = 0; i < 999999; i++) {
+            
+            a = a - 1;
+            res = Math.sqrt(4*e*e*f*f-Math.pow(b*b+d*d-a*a-c*c,2))/4;
+            res = Math.round((res + Number.EPSILON) * 100) / 100;
+            if (res >=25000 && res <=26000) { break; }
+
+            }
+
+            document.getElementById("nodio").innerHTML = "El resultado es mayor, los nuevos valores son: " + `${a}+${b}+${c}+${d}` + " igual a: " + `${res}`;
+
+
+
+            } 
+
+            }
+
+        }
+
+
  
 function clean() {
 
